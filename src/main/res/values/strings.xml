@@ -2,7 +2,7 @@
 <resources>
 
   <string name="app_name">Shadowsocks</string>
-  <string name="screen_name">shadowsocks</string>
+  <string name="screen_name">shadowsocks in zju</string>
 
   <!-- function category -->
   <string name="function_cat">Service Controller</string>
