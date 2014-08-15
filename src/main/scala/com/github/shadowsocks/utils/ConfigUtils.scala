@@ -100,11 +100,11 @@ object ConfigUtils {
       |server {
       | label = "zju-servers";
       | ip = 10.202.68.43, 10.10.0.21, 10.10.2.21;
-      | uptest = none;
+      | uptest = ping;
       | preset = on;
-      | include = ".zju.edu.cn",".cc98.org",".zjustu.org",".8866.org",".myqsc.com",".nexushd.org",".057101.com",".zju88.org";
-      | policy = included;
-      | timeout = 2;
+      | include = .zju.edu.cn,.cc98.org,.zjustu.org,.8866.org,.myqsc.com,.nexushd.org,.057101.com,.zju88.org;
+      | policy = excluded;
+      | timeout = 4;
       |}
       |
     """.stripMargin
