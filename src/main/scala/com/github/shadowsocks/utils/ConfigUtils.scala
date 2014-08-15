@@ -83,6 +83,8 @@ object ConfigUtils {
       | timeout = 5;
       |}
       |
+      |%s
+      |
       |rr {
       | name=localhost;
       | reverse=on;
@@ -90,6 +92,21 @@ object ConfigUtils {
       | owner=localhost;
       | soa=localhost,root.localhost,42,86400,900,86400,86400;
       |}
+    """.stripMargin
+
+  val PDNSD_BYPASS_ZJU = 
+    """
+      |
+      |server {
+      | label = "zju-servers";
+      | ip = 10.202.68.43, 10.10.0.21, 10.10.2.21;
+      | uptest = none;
+      | preset = on;
+      | include = ".zju.edu.cn",".cc98.org",".zjustu.org",".8866.org",".myqsc.com",".nexushd.org",".057101.com",".zju88.org";
+      | policy = included;
+      | timeout = 2;
+      |}
+      |
     """.stripMargin
 
   val PDNSD_BYPASS =
@@ -109,21 +126,13 @@ object ConfigUtils {
       |}
       |
       |server {
-      | label = "zju-servers";
-      | ip = 10.202.68.43, 10.10.0.21, 10.10.2.21;
-      | uptest = none;
-      | preset = on;
-      | timeout = 4;
-      |}
-      |
-      |server {
       | label = "china-servers";
       | ip = 114.114.114.114, 114.114.115.115;
       | uptest = none;
       | preset = on;
       | include = %s;
       | policy = excluded;
-      | timeout = 2;
+      | timeout = 3;
       |}
       |
       |server {
@@ -131,6 +140,8 @@ object ConfigUtils {
       | ip = 8.8.8.8, 8.8.4.4;
       | timeout = 5;
       |}
+      |
+      |%s
       |
       |rr {
       | name=localhost;
