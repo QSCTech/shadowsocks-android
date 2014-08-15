@@ -101,11 +101,78 @@ object ConfigUtils {
       |server {
       | label = "zju-servers";
       | ip = 10.202.68.43, 10.10.0.21, 10.10.2.21;
-      | uptest = none;
+      | uptest = ping;
+      | ping_timeout = 50;
+      | interval = 10;
       | preset = on;
       | include = .zju.edu.cn,.cc98.org,.zjustu.org,.8866.org,.myqsc.com,.nexushd.org,.057101.com,.zju88.org;
       | policy = included;
       | timeout = 3;
+      |}
+      |
+      |rr {
+      | name = box.myqsc.com;
+      | a = 10.202.68.44;
+      |}
+      |rr {
+      | name = www.qsc.zju.edu.cn;
+      | a = 10.202.68.61;
+      |}
+      |rr {
+      | name = m.myqsc.com;
+      | a = 10.202.68.46;
+      |}
+      |rr {
+      | name = share.myqsc.com;
+      | a = 10.202.68.44;
+      |}
+      |rr {
+      | name = notice.myqsc.com;
+      | a = 10.202.68.44;
+      |}
+      |rr {
+      | name = tech.myqsc.com;
+      | a = 10.202.68.45;
+      |}
+      |rr {
+      | name = tide.myqsc.com;
+      | a = 10.202.68.45;
+      |}
+      |rr {
+      | name = junxun.myqsc.com;
+      | r = 10.202.68.44;
+      |}
+      |rr {
+      | name = joinus.myqsc.com;
+      | r = 10.202.68.45;
+      |}
+      |rr {
+      | name = staff.myqsc.com;
+      | r = 10.202.68.42;
+      |}
+      |rr {
+      | name = stat.myqsc.com;
+      | r = 10.202.68.42;
+      |}
+      |rr {
+      | name = lab.myqsc.com;
+      | r = 10.202.68.43;
+      |}
+      |rr {
+      | name = ci.myqsc.com;
+      | r = 10.202.68.43;
+      |}
+      |rr {
+      | name = net.zju.edu.cn;
+      | r = 10.50.200.245;
+      |}
+      |rr {
+      | name = *.cc98.org;
+      | r = 10.10.98.98;
+      |}
+      |rr {
+      | name = *.nexushd.org;
+      | a = 10.13.87.106;
       |}
       |
     """.stripMargin
