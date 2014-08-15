@@ -76,6 +76,9 @@ class Profile {
   var chnroute: Boolean = true
 
   @DatabaseField
+  var zjuroute: Boolean = false
+
+  @DatabaseField
   var global: Boolean = true
 
   @DatabaseField
