@@ -94,17 +94,18 @@ object ConfigUtils {
       |}
     """.stripMargin
 
+ /* for QSC-Mobile's ZJUWLAN auto connect function, we should not take uptest */
   val PDNSD_BYPASS_ZJU = 
     """
       |
       |server {
       | label = "zju-servers";
       | ip = 10.202.68.43, 10.10.0.21, 10.10.2.21;
-      | uptest = ping;
+      | uptest = none;
       | preset = on;
       | include = .zju.edu.cn,.cc98.org,.zjustu.org,.8866.org,.myqsc.com,.nexushd.org,.057101.com,.zju88.org;
       | policy = excluded;
-      | timeout = 4;
+      | timeout = 3;
       |}
       |
     """.stripMargin
