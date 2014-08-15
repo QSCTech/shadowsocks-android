@@ -140,35 +140,35 @@ object ConfigUtils {
       |}
       |rr {
       | name = junxun.myqsc.com;
-      | r = 10.202.68.44;
+      | a = 10.202.68.44;
       |}
       |rr {
       | name = joinus.myqsc.com;
-      | r = 10.202.68.45;
+      | a = 10.202.68.45;
       |}
       |rr {
       | name = staff.myqsc.com;
-      | r = 10.202.68.42;
+      | a = 10.202.68.42;
       |}
       |rr {
       | name = stat.myqsc.com;
-      | r = 10.202.68.42;
+      | a = 10.202.68.42;
       |}
       |rr {
       | name = lab.myqsc.com;
-      | r = 10.202.68.43;
+      | a = 10.202.68.43;
       |}
       |rr {
       | name = ci.myqsc.com;
-      | r = 10.202.68.43;
+      | a = 10.202.68.43;
       |}
       |rr {
       | name = net.zju.edu.cn;
-      | r = 10.50.200.245;
+      | a = 10.50.200.245;
       |}
       |rr {
       | name = *.cc98.org;
-      | r = 10.10.98.98;
+      | a = 10.10.98.98;
       |}
       |rr {
       | name = *.nexushd.org;
