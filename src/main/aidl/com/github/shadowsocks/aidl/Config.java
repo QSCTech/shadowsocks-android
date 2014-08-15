@@ -7,6 +7,7 @@ public class Config implements Parcelable {
 
   public boolean isGlobalProxy = true;
   public boolean isGFWList = true;
+  public boolean isZJUList = false;
   public boolean isBypassApps = false;
   public boolean isTrafficStat = false;
   public boolean isUdpDns = false;
