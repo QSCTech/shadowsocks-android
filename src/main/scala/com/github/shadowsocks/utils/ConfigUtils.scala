@@ -77,13 +77,13 @@ object ConfigUtils {
       | pid_file = "/data/data/com.github.shadowsocks/pdnsd.pid";
       |}
       |
+      |%s
+      |
       |server {
       | label = "google-servers";
       | ip = 8.8.8.8, 8.8.4.4;
       | timeout = 5;
       |}
-      |
-      |%s
       |
       |rr {
       | name=localhost;
@@ -136,13 +136,13 @@ object ConfigUtils {
       | timeout = 3;
       |}
       |
+      |%s
+      |
       |server {
       | label = "google-servers";
       | ip = 8.8.8.8, 8.8.4.4;
       | timeout = 5;
       |}
-      |
-      |%s
       |
       |rr {
       | name=localhost;
