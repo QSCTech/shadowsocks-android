@@ -74,6 +74,7 @@ object Key {
 
   val isGlobalProxy = "isGlobalProxy"
   val isGFWList = "isGFWList"
+  val isZJUList = "isZJUList"
   val isBypassApps = "isBypassApps"
   val isTrafficStat = "isTrafficStat"
   val isUdpDns = "isUdpDns"

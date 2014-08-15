@@ -121,7 +121,7 @@ object Shadowsocks {
   val PREFS_NAME = "Shadowsocks"
   val PROXY_PREFS = Array(Key.profileName, Key.proxy, Key.remotePort, Key.localPort, Key.sitekey,
     Key.encMethod)
-  val FEATRUE_PREFS = Array(Key.isGFWList, Key.isGlobalProxy, Key.proxyedApps, Key.isTrafficStat,
+  val FEATRUE_PREFS = Array(Key.isGFWList, Key.isZJUList, Key.isGlobalProxy, Key.proxyedApps, Key.isTrafficStat,
     Key.isUdpDns, Key.isAutoConnect)
 
   val EXECUTABLES = Array(Executable.PDNSD, Executable.REDSOCKS)
@@ -160,6 +160,7 @@ object Shadowsocks {
       case Key.sitekey => updatePasswordEditTextPreference(pref, profile.password)
       case Key.encMethod => updateListPreference(pref, profile.method)
       case Key.isGFWList => updateCheckBoxPreference(pref, profile.chnroute)
+      case Key.isZJUList => updateCheckBoxPreference(pref, profile.zjuroute)
       case Key.isGlobalProxy => updateCheckBoxPreference(pref, profile.global)
       case Key.isTrafficStat => updateCheckBoxPreference(pref, profile.traffic)
       case Key.isUdpDns => updateCheckBoxPreference(pref, profile.udpdns)

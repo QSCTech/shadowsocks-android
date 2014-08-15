@@ -111,12 +111,19 @@ class ShadowsocksNatService extends Service with BaseService {
   }
 
   def startShadowsocksDaemon() {
-    if (isACLEnabled && config.isGFWList) {
-      val chn_list: Array[String] = getResources.getStringArray(R.array.chn_list_full)
-      ConfigUtils.printToFile(new File(Path.BASE + "chn.acl"))(p => {
+
+
+    val zju_list: Array[String] = getResources.getStringArray(R.array.zju_list_full)
+    val chn_list: Array[String] = getResources.getStringArray(R.array.chn_list_full)
+    ConfigUtils.printToFile(new File(Path.BASE + "whitelist.acl"))(p => {
+      if (config.isZJUList) {
+        /* rules for zju ip list */
+        zju_list.foreach(item => p.println(item))
+      }
+      if (config.isGFWList) {
         chn_list.foreach(item => p.println(item))
-      })
-    }
+      }
+    })
 
     val raw_args = ("ss-local -b 127.0.0.1 -s %s -p %d -l %d -k %s -m %s -f " +
       Path.BASE + "ss-local.pid")
@@ -126,7 +133,7 @@ class ShadowsocksNatService extends Service with BaseService {
     } else {
       Path.BASE + raw_args
     }
-    val cmd =  if (config.isGFWList && isACLEnabled) args + " --acl " + Path.BASE + "chn.acl" else args
+    val cmd =  if ((config.isGFWList || config.isZJUList) && isACLEnabled) args + " --acl " + Path.BASE + "whitelist.acl" else args
     if (BuildConfig.DEBUG) Log.d(TAG, cmd)
 
     Core.sslocal(cmd.split(" "))
@@ -144,6 +151,7 @@ class ShadowsocksNatService extends Service with BaseService {
         else
           ConfigUtils.PDNSD.format("127.0.0.1")
       }
+      Log.d(conf)
       ConfigUtils.printToFile(new File(Path.BASE + "pdnsd.conf"))(p => {
          p.println(conf)
       })

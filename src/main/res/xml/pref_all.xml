@@ -49,6 +49,12 @@
             android:title="@string/feature_cat">
 
         <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="isZJUList"
+                android:summary="@string/auto_set_zjulist_summary"
+                android:title="@string/auto_set_zjulist">
+        </CheckBoxPreference>
+        <CheckBoxPreference
                 android:defaultValue="true"
                 android:key="isGFWList"
                 android:summary="@string/auto_set_gfwlist_summary"

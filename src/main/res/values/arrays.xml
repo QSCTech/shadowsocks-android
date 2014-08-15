@@ -36,6 +36,21 @@
     <item>seed-cfb</item>
   </string-array>
 
+  <!-- zju-list: great thanks to Hexcles -->
+  <string-array name="zju_list_full">
+    <item>10.0.0.0/8</item>
+    <item>58.196.192.0/19</item>
+    <item>58.196.224.0/20</item>
+    <item>58.200.100.0/24</item>
+    <item>210.32.0.0/20</item>
+    <item>210.32.128.0/19</item>
+    <item>210.32.160.0/21</item>
+    <item>210.32.168.0/22</item>
+    <item>210.32.172.0/23</item>
+    <item>210.32.176.0/20</item>
+    <item>222.205.0.0/17</item>
+  </string>
+
   <string-array name="chn_list_full">
     <item>1.0.1.0/24</item>
     <item>1.0.2.0/23</item>

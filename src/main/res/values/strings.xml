@@ -29,6 +29,8 @@
   <string name="http_proxy_summary">Local HTTP Proxy</string>
   <string name="dns_proxy">DNS Proxy</string>
   <string name="dns_proxy_summary">Redirect DNS queries to remote server</string>
+  <string name="auto_set_zjulist">ZJU Route</string>
+  <string name="auto_set_zjulist_summary">Bypass all sites in ZJU network</string>
   <string name="auto_set_gfwlist">CHN Route</string>
   <string name="auto_set_gfwlist_summary">Bypass all sites located in China
   </string>

@@ -23,6 +23,8 @@
   <string name="http_proxy_summary">本地 HTTP 代理</string>
   <string name="dns_proxy">DNS 代理</string>
   <string name="dns_proxy_summary">重定向 DNS 查询到远程服务器</string>
+  <string name="auto_set_zjulist">浙大内网路由</string>
+  <string name="auto_set_zjulist_summary">绕过浙大内网地址</string>
   <string name="auto_set_gfwlist">国内路由</string>
   <string name="auto_set_gfwlist_summary">绕过所有位于中国的网站</string>
   <string name="auto_set_proxy">全局代理</string>

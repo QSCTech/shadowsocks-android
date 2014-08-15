@@ -109,6 +109,14 @@ object ConfigUtils {
       |}
       |
       |server {
+      | label = "zju-servers";
+      | ip = 10.202.68.43, 10.10.0.21, 10.10.2.21;
+      | uptest = none;
+      | preset = on;
+      | timeout = 4;
+      |}
+      |
+      |server {
       | label = "china-servers";
       | ip = 114.114.114.114, 114.114.115.115;
       | uptest = none;
@@ -164,7 +172,7 @@ object ConfigUtils {
     val password = proxy(2).trim
     val method = proxy(3).trim
 
-    new Config(config.isGlobalProxy, config.isGFWList, config.isBypassApps, config.isTrafficStat,
+    new Config(config.isGlobalProxy, config.isGFWList, config.isZJUList, config.isBypassApps, config.isTrafficStat,
       config.isUdpDns, config.profileName, host, password, method, config.proxiedAppString, port,
       config.localPort)
   }
@@ -172,6 +180,7 @@ object ConfigUtils {
   def load(settings: SharedPreferences): Config = {
     val isGlobalProxy = settings.getBoolean(Key.isGlobalProxy, false)
     val isGFWList = settings.getBoolean(Key.isGFWList, false)
+    val isZJUList = settings.getBoolean(Key.isZJUList, false)
     val isBypassApps = settings.getBoolean(Key.isBypassApps, false)
     val isTrafficStat = settings.getBoolean(Key.isTrafficStat, false)
     val isUdpDns = settings.getBoolean(Key.isUdpDns, false)
@@ -194,7 +203,7 @@ object ConfigUtils {
     }
     val proxiedAppString = settings.getString(Key.proxied, "")
 
-    new Config(isGlobalProxy, isGFWList, isBypassApps, isTrafficStat, isUdpDns, profileName, proxy,
+    new Config(isGlobalProxy, isGFWList, isZJUList, isBypassApps, isTrafficStat, isUdpDns, profileName, proxy,
       sitekey, encMethod, proxiedAppString, remotePort, localPort)
   }
 }

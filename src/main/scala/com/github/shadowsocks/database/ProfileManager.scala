@@ -119,6 +119,7 @@ class ProfileManager(settings: SharedPreferences, dbHelper: DBHelper) {
     val edit = settings.edit()
     edit.putBoolean(Key.isGlobalProxy, profile.global)
     edit.putBoolean(Key.isGFWList, profile.chnroute)
+    edit.putBoolean(Key.isZJUList, profile.zjuroute)
     edit.putBoolean(Key.isBypassApps, profile.bypass)
     edit.putBoolean(Key.isTrafficStat, profile.traffic)
     edit.putBoolean(Key.isUdpDns, profile.udpdns)
@@ -142,6 +143,7 @@ class ProfileManager(settings: SharedPreferences, dbHelper: DBHelper) {
 
     profile.global = settings.getBoolean(Key.isGlobalProxy, false)
     profile.chnroute = settings.getBoolean(Key.isGFWList, false)
+    profile.zjuroute = settings.getBoolean(Key.isZJUList, false)
     profile.bypass = settings.getBoolean(Key.isBypassApps, false)
     profile.traffic = settings.getBoolean(Key.isTrafficStat, false)
     profile.udpdns = settings.getBoolean(Key.isUdpDns, false)
