@@ -148,6 +148,8 @@ class ShadowsocksNatService extends Service with BaseService {
         var ZJU_LIST: String = null
         if (config.isZJUList) {
           ZJU_LIST = ConfigUtils.PDNSD_BYPASS_ZJU
+        } else {
+          ZJU_LIST = ""
         }
         if (config.isGFWList) {
           ConfigUtils.PDNSD_BYPASS.format("127.0.0.1", getString(R.string.exclude), ZJU_LIST)
