@@ -151,7 +151,6 @@ class ShadowsocksNatService extends Service with BaseService {
         else
           ConfigUtils.PDNSD.format("127.0.0.1")
       }
-      Log.d(conf)
       ConfigUtils.printToFile(new File(Path.BASE + "pdnsd.conf"))(p => {
          p.println(conf)
       })

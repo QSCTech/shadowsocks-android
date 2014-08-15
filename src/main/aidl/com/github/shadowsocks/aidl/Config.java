@@ -32,11 +32,12 @@ public class Config implements Parcelable {
     }
   };
 
-  public Config(boolean isGlobalProxy, boolean isGFWList, boolean isBypassApps,
+  public Config(boolean isGlobalProxy, boolean isGFWList, boolean isZJUList, boolean isBypassApps,
       boolean isTrafficStat, boolean isUdpDns, String profileName, String proxy, String sitekey,
       String encMethod, String proxiedAppString, int remotePort, int localPort) {
     this.isGlobalProxy = isGlobalProxy;
     this.isGFWList = isGFWList;
+    this.isZJUList = isZJUList;
     this.isBypassApps = isBypassApps;
     this.isTrafficStat = isTrafficStat;
     this.isUdpDns = isUdpDns;
@@ -56,6 +57,7 @@ public class Config implements Parcelable {
   public void readFromParcel(Parcel in) {
     isGlobalProxy = in.readInt() == 1;
     isGFWList = in.readInt() == 1;
+    isZJUList = in.readInt() == 1;
     isBypassApps = in.readInt() == 1;
     isTrafficStat = in.readInt() == 1;
     isUdpDns = in.readInt() == 1;
@@ -75,6 +77,7 @@ public class Config implements Parcelable {
   @Override public void writeToParcel(Parcel out, int flags) {
     out.writeInt(isGlobalProxy ? 1 : 0);
     out.writeInt(isGFWList ? 1 : 0);
+    out.writeInt(isZJUList ? 1 : 0);
     out.writeInt(isBypassApps ? 1 : 0);
     out.writeInt(isTrafficStat ? 1 : 0);
     out.writeInt(isUdpDns ? 1 : 0);
