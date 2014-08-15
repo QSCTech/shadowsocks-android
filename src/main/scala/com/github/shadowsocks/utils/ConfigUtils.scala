@@ -166,14 +166,6 @@ object ConfigUtils {
       | name = net.zju.edu.cn;
       | a = 10.50.200.245;
       |}
-      |rr {
-      | name = *.cc98.org;
-      | a = 10.10.98.98;
-      |}
-      |rr {
-      | name = *.nexushd.org;
-      | a = 10.13.87.106;
-      |}
       |
     """.stripMargin
 
