@@ -59,7 +59,6 @@ import com.github.shadowsocks.aidl.{IShadowsocksService, IShadowsocksServiceCall
 import com.github.shadowsocks.database._
 import com.github.shadowsocks.preferences.{PasswordEditTextPreference, ProfileEditTextPreference, SummaryEditTextPreference}
 import com.github.shadowsocks.utils._
-import com.google.analytics.tracking.android.{EasyTracker, MapBuilder}
 import com.google.zxing.integration.android.IntentIntegrator
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader
 import de.keyboardsurfer.android.widget.crouton.{Configuration, Crouton, Style}
@@ -663,25 +662,15 @@ class Shadowsocks
     buf += new Category(getString(R.string.settings))
 
     buf += new Item(-100, getString(R.string.recovery), android.R.drawable.ic_menu_revert, _ => {
-      EasyTracker
-        .getInstance(this)
-        .send(MapBuilder.createEvent(Shadowsocks.TAG, "reset", getVersionName, null).build())
       recovery()
     })
 
     buf +=
       new Item(-200, getString(R.string.flush_dnscache), android.R.drawable.ic_menu_delete, _ => {
-        EasyTracker
-          .getInstance(this)
-          .send(
-            MapBuilder.createEvent(Shadowsocks.TAG, "flush_dnscache", getVersionName, null).build())
         flushDnsCache()
       })
 
     buf += new Item(-300, getString(R.string.about), android.R.drawable.ic_menu_info_details, _ => {
-      EasyTracker
-        .getInstance(this)
-        .send(MapBuilder.createEvent(Shadowsocks.TAG, "about", getVersionName, null).build())
       showAbout()
     })
 
@@ -756,12 +745,10 @@ class Shadowsocks
 
   override def onStart() {
     super.onStart()
-    EasyTracker.getInstance(this).activityStart(this)
   }
 
   override def onStop() {
     super.onStop()
-    EasyTracker.getInstance(this).activityStop(this)
     clearDialog()
   }
 

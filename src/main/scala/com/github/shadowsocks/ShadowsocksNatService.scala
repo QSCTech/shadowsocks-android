@@ -49,7 +49,6 @@ import android.content.pm.PackageManager
 import android.os._
 import android.support.v4.app.NotificationCompat
 import android.util.Log
-import com.google.analytics.tracking.android.{Fields, MapBuilder, EasyTracker}
 import java.lang.reflect.InvocationTargetException
 import java.lang.reflect.Method
 import org.apache.http.conn.util.InetAddressUtils
@@ -474,14 +473,6 @@ class ShadowsocksNatService extends Service with BaseService {
     }
     registerReceiver(receiver, filter)
 
-    // start tracker
-    EasyTracker
-      .getInstance(this)
-      .send(MapBuilder
-      .createEvent(TAG, "start", getVersionName, 0L)
-      .set(Fields.SESSION_CONTROL, "start")
-      .build())
-
     changeState(State.CONNECTING)
 
     if (config.isTrafficStat) {
@@ -561,14 +552,6 @@ class ShadowsocksNatService extends Service with BaseService {
 
     // change the state
     changeState(State.STOPPED)
-
-    // stop the tracker
-    EasyTracker
-      .getInstance(this)
-      .send(MapBuilder
-      .createEvent(TAG, "stop", getVersionName, 0L)
-      .set(Fields.SESSION_CONTROL, "stop")
-      .build())
 
     // reset timer
     if (timer != null) {

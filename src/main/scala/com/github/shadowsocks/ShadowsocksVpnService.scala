@@ -46,7 +46,6 @@ import android.content.pm.PackageManager
 import android.os._
 import android.support.v4.app.NotificationCompat
 import android.util.Log
-import com.google.analytics.tracking.android.{Fields, MapBuilder, EasyTracker}
 import android.net.VpnService
 import org.apache.http.conn.util.InetAddressUtils
 import android.os.Message
@@ -289,14 +288,6 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       return
     }
 
-    // start the tracker
-    EasyTracker
-      .getInstance(this)
-      .send(MapBuilder
-      .createEvent(TAG, "start", getVersionName, 0L)
-      .set(Fields.SESSION_CONTROL, "start")
-      .build())
-
     // register close receiver
     val filter = new IntentFilter()
     filter.addAction(Intent.ACTION_SHUTDOWN)
@@ -354,14 +345,6 @@ class ShadowsocksVpnService extends VpnService with BaseService {
 
     // channge the state
     changeState(State.STOPPED)
-
-    // stop the tracker
-    EasyTracker
-      .getInstance(this)
-      .send(MapBuilder
-      .createEvent(TAG, "stop", getVersionName, 0L)
-      .set(Fields.SESSION_CONTROL, "stop")
-      .build())
 
     // clean up the context
     if (receiver != null) {
