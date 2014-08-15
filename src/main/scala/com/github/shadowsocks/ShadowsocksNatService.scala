@@ -141,12 +141,10 @@ class ShadowsocksNatService extends Service with BaseService {
 
   def startDnsDaemon() {
     val args = if (config.isUdpDns) {
-      Log.d("Hey! startDnsDaemon: this is Udp DNS! ")
       ("ss-tunnel -b 127.0.0.1 -s %s -p %d -l %d -k %s -m %s -L 8.8.8.8:53 -u -f " +
         Path.BASE + "ss-tunnel.pid")
         .format(config.proxy, config.remotePort, 8153, config.sitekey, config.encMethod)
     } else {
-      Log.d("Hey! startDnsDaemon: use PDNSD! ")
       val conf = {
         var ZJU_LIST: String = null
         if (config.isZJUList) {
