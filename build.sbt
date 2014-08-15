@@ -15,7 +15,6 @@ resolvers += "JRAF" at "http://JRAF.org/static/maven/2"
 resolvers += "madeye private releases" at "http://madeye-maven-repository.googlecode.com/git/"
 
 libraryDependencies ++= Seq(
-  "com.google.android" % "analytics" % "3.01",
   "dnsjava" % "dnsjava" % "2.1.5",
   "org.scalaj" %% "scalaj-http" % "0.3.10",
   "commons-net" % "commons-net" % "3.3",
