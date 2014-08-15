@@ -104,7 +104,7 @@ object ConfigUtils {
       | uptest = none;
       | preset = on;
       | include = .zju.edu.cn,.cc98.org,.zjustu.org,.8866.org,.myqsc.com,.nexushd.org,.057101.com,.zju88.org;
-      | policy = excluded;
+      | policy = included;
       | timeout = 3;
       |}
       |
