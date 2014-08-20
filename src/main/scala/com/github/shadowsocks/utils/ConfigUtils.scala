@@ -106,62 +106,10 @@ object ConfigUtils {
       | interval = 10;
       | preset = on;
       | include = .zju.edu.cn,.cc98.org,.zjustu.org,.8866.org,.myqsc.com,.nexushd.org,.057101.com,.zju88.org;
-      | policy = included;
+      | policy = excluded;
       | timeout = 3;
       |}
-      |
-      |rr {
-      | name = box.myqsc.com;
-      | a = 10.202.68.44;
-      |}
-      |rr {
-      | name = www.qsc.zju.edu.cn;
-      | a = 10.202.68.61;
-      |}
-      |rr {
-      | name = m.myqsc.com;
-      | a = 10.202.68.46;
-      |}
-      |rr {
-      | name = share.myqsc.com;
-      | a = 10.202.68.44;
-      |}
-      |rr {
-      | name = notice.myqsc.com;
-      | a = 10.202.68.44;
-      |}
-      |rr {
-      | name = tech.myqsc.com;
-      | a = 10.202.68.45;
-      |}
-      |rr {
-      | name = tide.myqsc.com;
-      | a = 10.202.68.45;
-      |}
-      |rr {
-      | name = junxun.myqsc.com;
-      | a = 10.202.68.44;
-      |}
-      |rr {
-      | name = joinus.myqsc.com;
-      | a = 10.202.68.45;
-      |}
-      |rr {
-      | name = staff.myqsc.com;
-      | a = 10.202.68.42;
-      |}
-      |rr {
-      | name = stat.myqsc.com;
-      | a = 10.202.68.42;
-      |}
-      |rr {
-      | name = lab.myqsc.com;
-      | a = 10.202.68.43;
-      |}
-      |rr {
-      | name = ci.myqsc.com;
-      | a = 10.202.68.43;
-      |}
+      | 
       |rr {
       | name = net.zju.edu.cn;
       | a = 10.50.200.245;
