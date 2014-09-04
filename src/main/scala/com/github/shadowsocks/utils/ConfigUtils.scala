@@ -83,6 +83,7 @@ object ConfigUtils {
       | label = "google-servers";
       | ip = 8.8.8.8, 8.8.4.4;
       | timeout = 5;
+      | purge_cache=on;
       |}
       |
       |rr {
@@ -108,6 +109,7 @@ object ConfigUtils {
       | include = .zju.edu.cn,.cc98.org,.zjustu.org,.8866.org,.myqsc.com,.nexushd.org,.057101.com,.zju88.org;
       | policy = excluded;
       | timeout = 3;
+      | purge_cache=on;
       |}
       | 
       |rr {
@@ -141,6 +143,7 @@ object ConfigUtils {
       | include = %s;
       | policy = excluded;
       | timeout = 3;
+      | purge_cache=on;
       |}
       |
       |%s
@@ -149,6 +152,7 @@ object ConfigUtils {
       | label = "google-servers";
       | ip = 8.8.8.8, 8.8.4.4;
       | timeout = 5;
+      | purge_cache=off;
       |}
       |
       |rr {
