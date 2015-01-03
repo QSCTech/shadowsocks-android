@@ -70,6 +70,8 @@ object Key {
   val status = "status"
   val proxyedApps = "proxyedApps"
   val route = "route"
+  val customDNS = "customDNS"
+  val customDNS_URL = "customDNS_URL"
 
   val isRunning = "isRunning"
   val isAutoConnect = "isAutoConnect"

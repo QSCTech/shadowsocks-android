@@ -58,6 +58,18 @@
                 android:summary="@string/route_list_summary"
                 android:title="@string/route_list">
         </com.github.shadowsocks.preferences.SummaryListPreference>
+        <com.github.shadowsocks.preferences.SummaryEditTextPreference
+                android:defaultValue="10.202.68.73, 10.10.0.21"
+                android:key="customDNS"
+                android:summary="@string/custom_dns_summary"
+                android:title="@string/custom_dns">
+        </com.github.shadowsocks.preferences.SummaryEditTextPreference>
+        <com.github.shadowsocks.preferences.SummaryEditTextPreference
+                android:defaultValue=".cc98.org,.cn,.zjuqsc.com,.myqsc.com,.nexushd.org,.senorsen.com,.hlyue.com,.xsensen.me,.izju.so"
+                android:key="customDNS_URL"
+                android:summary="@string/custom_dns_url_summary"
+                android:title="@string/custom_dns_url">
+        </com.github.shadowsocks.preferences.SummaryEditTextPreference>
         <CheckBoxPreference
                 android:defaultValue="true"
                 android:key="isGlobalProxy"

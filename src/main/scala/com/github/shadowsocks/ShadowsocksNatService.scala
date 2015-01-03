@@ -53,7 +53,6 @@ import android.util.{SparseArray, Log}
 import android.widget.Toast
 import com.github.shadowsocks.aidl.Config
 import com.github.shadowsocks.utils._
-import com.google.android.gms.analytics.HitBuilders
 import org.apache.http.conn.util.InetAddressUtils
 
 import scala.collection._
@@ -260,15 +259,18 @@ class ShadowsocksNatService extends Service with BaseService {
   }
 
   def startDnsDaemon() {
-
+    var pdnsd_custom_config: String = ""
+    if (config.customDNS != "" && config.customDNS_URL != "") {
+      pdnsd_custom_config = pdnsd_custom_config + ConfigUtils.PDNSD_CUSTOM_DNS.formatLocal(Locale.ENGLISH, config.customDNS, config.customDNS_URL)
+    }
     val conf = if (config.route == Route.BYPASS_CHN) {
       val reject = ConfigUtils.getRejectList(getContext, application)
       val blackList = ConfigUtils.getBlackList(getContext, application)
       ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, "127.0.0.1", 8153,
-        Path.BASE + "pdnsd-nat.pid", reject, blackList, 8163)
+        Path.BASE + "pdnsd-nat.pid", pdnsd_custom_config, reject, blackList, 8163)
     } else {
       ConfigUtils.PDNSD_LOCAL.formatLocal(Locale.ENGLISH, "127.0.0.1", 8153,
-        Path.BASE + "pdnsd-nat.pid", 8163)
+        Path.BASE + "pdnsd-nat.pid", pdnsd_custom_config, 8163)
     }
 
     ConfigUtils.printToFile(new File(Path.BASE + "pdnsd-nat.conf"))(p => {
@@ -539,13 +541,6 @@ class ShadowsocksNatService extends Service with BaseService {
     }
     registerReceiver(lockReceiver, screenFilter)
 
-    // send event
-    application.tracker.send(new HitBuilders.EventBuilder()
-      .setCategory(TAG)
-      .setAction("start")
-      .setLabel(getVersionName)
-      .build())
-
     changeState(State.CONNECTING)
 
     spawn {
@@ -610,13 +605,6 @@ class ShadowsocksNatService extends Service with BaseService {
       unregisterReceiver(lockReceiver)
       lockReceiver = null
     }
-
-    // send event
-    application.tracker.send(new HitBuilders.EventBuilder()
-      .setCategory(TAG)
-      .setAction("stop")
-      .setLabel(getVersionName)
-      .build())
 
     // reset NAT
     killProcesses()

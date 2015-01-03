@@ -51,7 +51,6 @@ import android.util.Log
 import android.widget.Toast
 import com.github.shadowsocks.aidl.Config
 import com.github.shadowsocks.utils._
-import com.google.android.gms.analytics.HitBuilders
 import org.apache.commons.net.util.SubnetUtils
 import org.apache.http.conn.util.InetAddressUtils
 
@@ -152,15 +151,19 @@ class ShadowsocksVpnService extends VpnService with BaseService {
   }
 
   def startDnsDaemon() {
+    var pdnsd_custom_config: String = ""
+    if (config.customDNS != "" && config.customDNS_URL != "") {
+      pdnsd_custom_config = pdnsd_custom_config + ConfigUtils.PDNSD_CUSTOM_DNS.formatLocal(Locale.ENGLISH, config.customDNS, config.customDNS_URL)
+    }
     val conf = {
       if (Utils.isLollipopOrAbove && config.route == Route.BYPASS_CHN) {
         val reject = ConfigUtils.getRejectList(getContext, application)
         val blackList = ConfigUtils.getBlackList(getContext, application)
         ConfigUtils.PDNSD_DIRECT.formatLocal(Locale.ENGLISH, "0.0.0.0", 8153,
-          Path.BASE + "pdnsd-vpn.pid", reject, blackList, 8163)
+          Path.BASE + "pdnsd-vpn.pid", pdnsd_custom_config, reject, blackList, 8163)
       } else {
         ConfigUtils.PDNSD_LOCAL.formatLocal(Locale.ENGLISH, "0.0.0.0", 8153,
-          Path.BASE + "pdnsd-vpn.pid", 8163)
+          Path.BASE + "pdnsd-vpn.pid", pdnsd_custom_config, 8163)
       }
     }
     ConfigUtils.printToFile(new File(Path.BASE + "pdnsd-vpn.conf"))(p => {
@@ -396,13 +399,6 @@ class ShadowsocksVpnService extends VpnService with BaseService {
       return
     }
 
-    // send event
-    application.tracker.send(new HitBuilders.EventBuilder()
-      .setCategory(TAG)
-      .setAction("start")
-      .setLabel(getVersionName)
-      .build())
-
     // register close receiver
     val filter = new IntentFilter()
     filter.addAction(Intent.ACTION_SHUTDOWN)
@@ -462,13 +458,6 @@ class ShadowsocksVpnService extends VpnService with BaseService {
 
     // channge the state
     changeState(State.STOPPING)
-
-    // send event
-    application.tracker.send(new HitBuilders.EventBuilder()
-      .setCategory(TAG)
-      .setAction("stop")
-      .setLabel(getVersionName)
-      .build())
 
     // reset VPN
     killProcesses()

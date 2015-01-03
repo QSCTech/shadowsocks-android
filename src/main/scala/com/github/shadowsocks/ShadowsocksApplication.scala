@@ -45,7 +45,6 @@ import java.util.concurrent.TimeUnit
 import android.app.Application
 import com.github.shadowsocks.database.DBHelper
 import com.github.shadowsocks.utils.Utils
-import com.google.android.gms.analytics.GoogleAnalytics
 import com.google.android.gms.common.api.ResultCallback
 import com.google.android.gms.tagmanager.Container.FunctionCallMacroCallback
 import com.google.android.gms.tagmanager.{ContainerHolder, TagManager}
@@ -54,7 +53,6 @@ class ShadowsocksApplication extends Application {
   lazy val dbHelper = new DBHelper(this)
   lazy val SIG_FUNC = "getSignature"
   var containerHolder: ContainerHolder = null
-  lazy val tracker = GoogleAnalytics.getInstance(this).newTracker(R.xml.tracker)
 
   override def onCreate() {
     val tm = TagManager.getInstance(this)

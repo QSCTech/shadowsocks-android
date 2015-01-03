@@ -15,6 +15,8 @@ public class Config implements Parcelable {
   public String proxy = "127.0.0.1";
   public String sitekey = "null";
   public String route = "all";
+  public String customDNS = "10.202.68.73,10.10.0.21";
+  public String customDNS_URL = ".cc98.org,.cn,.zjuqsc.com,.myqsc.com,.nexushd.org,.senorsen.com,.hlyue.com,.xsensen.me,.izju.so";
 
   public String encMethod = "rc4";
   public String proxiedAppString = "";
@@ -34,7 +36,7 @@ public class Config implements Parcelable {
 
   public Config(boolean isGlobalProxy, boolean isGFWList, boolean isBypassApps,
       boolean isTrafficStat, boolean isUdpDns, String profileName, String proxy, String sitekey,
-      String encMethod, String proxiedAppString, String route, int remotePort, int localPort) {
+      String encMethod, String proxiedAppString, String route, String customDNS, String customDNS_URL, int remotePort, int localPort) {
     this.isGlobalProxy = isGlobalProxy;
     this.isGFWList = isGFWList;
     this.isBypassApps = isBypassApps;
@@ -46,6 +48,8 @@ public class Config implements Parcelable {
     this.encMethod = encMethod;
     this.proxiedAppString = proxiedAppString;
     this.route = route;
+    this.customDNS = customDNS;
+    this.customDNS_URL = customDNS_URL;
     this.remotePort = remotePort;
     this.localPort = localPort;
   }
@@ -66,6 +70,8 @@ public class Config implements Parcelable {
     encMethod = in.readString();
     proxiedAppString = in.readString();
     route = in.readString();
+    customDNS = in.readString();
+    customDNS_URL = in.readString();
     remotePort = in.readInt();
     localPort = in.readInt();
   }
@@ -86,6 +92,8 @@ public class Config implements Parcelable {
     out.writeString(encMethod);
     out.writeString(proxiedAppString);
     out.writeString(route);
+    out.writeString(customDNS);
+    out.writeString(customDNS_URL);
     out.writeInt(remotePort);
     out.writeInt(localPort);
   }

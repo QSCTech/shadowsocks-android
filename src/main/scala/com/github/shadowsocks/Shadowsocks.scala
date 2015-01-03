@@ -61,8 +61,6 @@ import com.github.shadowsocks.aidl.{IShadowsocksService, IShadowsocksServiceCall
 import com.github.shadowsocks.database._
 import com.github.shadowsocks.preferences.{PasswordEditTextPreference, ProfileEditTextPreference, SummaryEditTextPreference}
 import com.github.shadowsocks.utils._
-import com.google.android.gms.ads.{AdRequest, AdSize, AdView}
-import com.google.android.gms.analytics.HitBuilders
 import com.google.zxing.integration.android.IntentIntegrator
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader
 import net.simonvt.menudrawer.MenuDrawer
@@ -425,28 +423,8 @@ class Shadowsocks
     }
   }
 
-  def initAdView() {
-    if (settings.getString(Key.proxy, "") == "198.199.101.152") {
-      val layoutView = {
-        if (Build.VERSION.SDK_INT > 10) {
-          drawer.getContentContainer.getChildAt(0)
-        } else {
-          getLayoutView(drawer.getContentContainer.getParent)
-        }
-      }
-      if (layoutView != null) {
-        val adView = new AdView(this)
-        adView.setAdUnitId("ca-app-pub-9097031975646651/7760346322")
-        adView.setAdSize(AdSize.SMART_BANNER)
-        layoutView.asInstanceOf[ViewGroup].addView(adView, 0)
-        adView.loadAd(new AdRequest.Builder().build())
-      }
-    }
-  }
-
   override def setContentView(layoutResId: Int) {
     drawer.setContentView(layoutResId)
-    initAdView()
     onContentChanged()
   }
 
@@ -717,33 +695,15 @@ class Shadowsocks
     buf += new Category(getString(R.string.settings))
 
     buf += new Item(-100, getString(R.string.recovery), android.R.drawable.ic_menu_revert, _ => {
-      // send event
-      application.tracker.send(new HitBuilders.EventBuilder()
-        .setCategory(Shadowsocks.TAG)
-        .setAction("reset")
-        .setLabel(getVersionName)
-        .build())
       recovery()
     })
 
     buf +=
       new Item(-200, getString(R.string.flush_dnscache), android.R.drawable.ic_menu_delete, _ => {
-        // send event
-        application.tracker.send(new HitBuilders.EventBuilder()
-          .setCategory(Shadowsocks.TAG)
-          .setAction("flush_dnscache")
-          .setLabel(getVersionName)
-          .build())
         flushDnsCache()
       })
 
     buf += new Item(-300, getString(R.string.about), android.R.drawable.ic_menu_info_details, _ => {
-      // send event
-      application.tracker.send(new HitBuilders.EventBuilder()
-        .setCategory(Shadowsocks.TAG)
-        .setAction("about")
-        .setLabel(getVersionName)
-        .build())
       showAbout()
     })
 

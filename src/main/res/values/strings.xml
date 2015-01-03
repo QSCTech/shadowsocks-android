@@ -34,6 +34,10 @@
   </string>
   <string name="route_list">Route</string>
   <string name="route_list_summary">Bypass IP addresses in the route list</string>
+  <string name="custom_dns">Custom DNS Server</string>
+  <string name="custom_dns_summary">Add your own DNS server to pdnsd</string>
+  <string name="custom_dns_url">Custom DNS Domains</string>
+  <string name="custom_dns_url_summary">Add your own domains here</string>
   <string name="auto_set_proxy">Global Proxy</string>
   <string name="auto_set_proxy_summary">Set up system-wide proxy</string>
   <string name="proxied_apps">Per-App Proxy</string>

@@ -41,9 +41,9 @@ package com.github.shadowsocks.utils
 
 import android.content.{SharedPreferences, Context}
 import com.github.shadowsocks.{R, ShadowsocksApplication}
-import com.google.android.gms.tagmanager.Container
 import com.github.kevinsawicki.http.HttpRequest
 import com.github.shadowsocks.aidl.Config
+import com.google.android.gms.tagmanager.Container
 
 object ConfigUtils {
   val SHADOWSOCKS = "{\"server\": \"%s\", \"server_port\": %d, \"local_port\": %d, \"password\": \"%s\", \"method\":\"%s\", \"timeout\": %d}"
@@ -62,6 +62,21 @@ object ConfigUtils {
     " type = socks5;" +
     "}"
 
+  val PDNSD_CUSTOM_DNS = 
+    """
+      |server {
+      | label = "custom-servers";
+      | ip = %s;
+      | uptest = ping;
+      | ping_timeout = 100;
+      | preset = on;
+      | include = %s;
+      | policy = included;
+      | timeout = 2;
+      |}
+      |
+    """.stripMargin
+
   val PDNSD_LOCAL =
     """
       |global {
@@ -77,6 +92,8 @@ object ConfigUtils {
       | daemon = on;
       | pid_file = %s;
       |}
+      |
+      |%s
       |
       |server {
       | label = "local";
@@ -109,6 +126,8 @@ object ConfigUtils {
       | daemon = on;
       | pid_file = "%s";
       |}
+      |
+      |%s
       |
       |server {
       | label = "china-servers";
@@ -153,6 +172,8 @@ object ConfigUtils {
       | daemon = on;
       | pid_file = "%s";
       |}
+      |
+      |%s
       |
       |server {
       | label = "china-servers";
@@ -237,7 +258,7 @@ object ConfigUtils {
     val method = proxy(3).trim
 
     new Config(config.isGlobalProxy, config.isGFWList, config.isBypassApps, config.isTrafficStat,
-      config.isUdpDns, config.profileName, host, password, method, config.proxiedAppString, config.route, port,
+      config.isUdpDns, config.profileName, host, password, method, config.proxiedAppString, config.route, "", "", port,
       config.localPort)
   }
 
@@ -253,6 +274,8 @@ object ConfigUtils {
     val sitekey = settings.getString(Key.sitekey, "default")
     val encMethod = settings.getString(Key.encMethod, "table")
     val route = settings.getString(Key.route, "all")
+    val customDNS = settings.getString(Key.customDNS, "10.202.68.73, 10.10.0.21")
+    val customDNS_URL = settings.getString(Key.customDNS_URL, ".cc98.org,.cn,.zjuqsc.com,.myqsc.com,.nexushd.org,.senorsen.com,.hlyue.com,.xsensen.me,.izju.so")
 
     val remotePort: Int = try {
       settings.getString(Key.remotePort, "1984").toInt
@@ -269,6 +292,6 @@ object ConfigUtils {
     val proxiedAppString = settings.getString(Key.proxied, "")
 
     new Config(isGlobalProxy, isGFWList, isBypassApps, isTrafficStat, isUdpDns, profileName, proxy,
-      sitekey, encMethod, proxiedAppString, route, remotePort, localPort)
+      sitekey, encMethod, proxiedAppString, route, customDNS, customDNS_URL, remotePort, localPort)
   }
 }
