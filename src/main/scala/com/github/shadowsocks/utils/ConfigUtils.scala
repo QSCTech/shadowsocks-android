@@ -68,11 +68,12 @@ object ConfigUtils {
       | label = "custom-servers";
       | ip = %s;
       | uptest = ping;
-      | ping_timeout = 100;
+      | ping_timeout = 50;
       | preset = on;
       | include = %s;
-      | policy = included;
+      | policy = excluded;
       | timeout = 2;
+      | purge_cache = on;
       |}
       |
     """.stripMargin
@@ -100,6 +101,7 @@ object ConfigUtils {
       | ip = 127.0.0.1;
       | port = %d;
       | timeout = 5;
+      | purge_cache = on;
       |}
       |
       |rr {
@@ -137,6 +139,7 @@ object ConfigUtils {
       | include = %s;
       | policy = excluded;
       | timeout = 2;
+      | purge_cache = on;
       |}
       |
       |server {
@@ -146,6 +149,7 @@ object ConfigUtils {
       | preset = on;
       | port = %d;
       | timeout = 5;
+      | purge_cache = on;
       |}
       |
       |rr {
@@ -186,6 +190,7 @@ object ConfigUtils {
       | policy = included;
       | uptest = none;
       | preset = on;
+      | purge_cache = on;
       |}
       |
       |server {
@@ -193,6 +198,7 @@ object ConfigUtils {
       | ip = 127.0.0.1;
       | port = %d;
       | timeout = 3;
+      | purge_cache = on;
       |}
       |
       |rr {
